@@ -2,16 +2,37 @@ import { router } from "expo-router";
 import { Button, StyleSheet, Text, View } from "react-native";
 
 export default function Checkout() {
-    function handlePaymentFeedback(paymentSuccess: boolean) {
-        router.navigate("payment-confirmation/" + paymentSuccess);
+
+    function selectPaymentMethod(option: number) {
+        switch(option) {
+            case 1:
+                router.navigate("pix-payment");
+                break;
+            case 2:
+                router.navigate("card-payment");
+                break;
+            case 3:
+                router.navigate("card-payment");
+                break;
+            default:
+                break;
+        }
+    }
+
+    function handleBack() {
+        router.back();
     }
 
     return (
         <View style={styles.container}>
-            <Text>Insira ou aproxime o cartão</Text>
-            <View style={styles.debugButtons}>
-                <Button title="Pag. confirmado" color={"green"} onPress={() => handlePaymentFeedback(true)} />
-                <Button title="Pag. com erro" color={"red"} onPress={() => handlePaymentFeedback(false)} />
+            <Text>Selecione como deseja pagar sua compra</Text>
+            <View style={styles.paymentMethods}>
+                <Button title="Pix" color={"green"} onPress={() => selectPaymentMethod(1)} />
+                <Button title="Cartão de crédito" color={"red"} onPress={() => selectPaymentMethod(2)} />
+                <Button title="Cartão de débito" color={"blue"} onPress={() => selectPaymentMethod(3)} />
+            </View>
+            <View style={styles.bottonButton}>
+                <Button title="Voltar para o carrinho" color={"red"} onPress={() => handleBack()} />
             </View>
         </View>
     );
@@ -25,10 +46,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 10
     },
-    debugButtons: {
-        position: 'absolute',
-        flexDirection: 'row',
+    paymentMethods: {
+        paddingTop: 20,
         gap: 10,
-        bottom: 10
+    },
+    bottonButton: {
+        position: 'absolute',
+        bottom: 10,
+        width: '95%'
     }
 });

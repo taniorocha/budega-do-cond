@@ -8,7 +8,6 @@ export default function Home() {
 
     return (
         <View style={styles.container}>
-            <Text>Início</Text>
             <Button title="Clique para começar" onPress={() => handleStart()} />
             {/* <Link href={"cart"}>Ir para o carrinho</Link> */}
         </View>
@@ -20,6 +19,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        padding: 10
     }
 });
