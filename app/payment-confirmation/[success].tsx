@@ -1,15 +1,18 @@
+import { CartContext } from "@/contexts/CartContext";
 import { router, useLocalSearchParams } from "expo-router";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function PaymentConfirmation() {
+    const context = useContext(CartContext);
     const { success } = useLocalSearchParams();
-    // const success = true;
 
     useEffect(() => {
         const interval = setInterval(() => {
-            if(success === "true")
+            if(success === "true") {
+                context?.handleCleanCart();
                 router.replace("/");
+            }
             else
                 router.back();
             clearInterval(interval);

@@ -1,15 +1,16 @@
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { router } from "expo-router";
 
 export default function Home() {
-    function handleStart() {
+    const handleStart = () => {
         router.navigate("cart");
     }
 
     return (
         <View style={styles.container}>
-            <Button title="Clique para começar" onPress={() => handleStart()} />
-            {/* <Link href={"cart"}>Ir para o carrinho</Link> */}
+            <TouchableOpacity style={styles.button} onPress={() => handleStart()}>
+                <Text style={styles.buttonText}>Clique para começar</Text>
+            </TouchableOpacity>
         </View>
     );
 }
@@ -21,5 +22,18 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 10
-    }
+    },
+    button: {
+        backgroundColor: '#007BFF',
+        padding: 15,
+        alignItems: 'center',
+        marginBottom: 10,
+        borderRadius: 8,
+        elevation: 2,
+    },
+    buttonText: {
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: 16,
+    },
 });
